@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.rating > input {
+    display: none;
+}
+
+.rating > label {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+    font-size: 50px;
+    color: white;
+}
+
+.rating > label:before {
+    content: '★';
+    position: absolute;
+}
+
+.rating > input:checked ~ label:before {
+    color: rgb(140, 58, 179);
+}

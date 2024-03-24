@@ -1,0 +1,50 @@
+
+.slider{
+	position: relative;
+	overflow: hidden;
+	width: 1800px;
+	height: 500px;
+	
+	margin-bottom: 2%;
+}
+
+.slide{
+	position: absolute;
+	width: 1800px;
+	height: 500px;
+	
+	animation: slider 7.5s infinite linear;
+}
+.slide:nth-child(1) {
+  background-image: url(img1.jpg);
+  animation-delay: 0;
+}
+.slide:nth-child(2) {
+  background-image: url(img2.jpg);
+  animation-delay: -2.5s;
+}
+.slide:nth-child(3) {
+  background-image: url(img3.jpg);
+  animation-delay: -5s;
+}
+
+@keyframes slider {
+  0% {
+    transform: translateX(0);
+  }
+
+  26% {
+    transform: translateX(0);
+  }
+  33% {
+    transform: translateX(-100%);
+    animation-timing-function: step-end;
+  }
+  93% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
