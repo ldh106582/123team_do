@@ -23,7 +23,7 @@
 		     		<div class="col-12 grid-margin stretch-card">
 	              <div class="card">
 	                <div class="card-body">
-	                  <h4 class="card-title">게시글 작성</h4>
+	                  <h4 class="card-title">체험단 작성</h4>
 	                  <form:form modelAttribute="board" method="POST" class="forms-sample">
 	                    <div class="form-group">
 	                      <label for="title">제목</label>
@@ -39,7 +39,7 @@
 	                    </div>
 	                    <div class="form-group">
 	                      <label for="exampleTextarea1">내용</label>
-	                      <textarea class="form-control" id="context" name="context" rows="10"></textarea>
+	                      <textarea class="form-control" id="context" name="context" rows="10" placeholder="자세한 내용을 기입해주세요 :)"></textarea>
 	                    </div>
 	                    <a href="/123team/ENboards" class="btn btn-light">돌아가기</a>
 	                    <button type="submit" class="btn btn-primary mr-2">등록</button>

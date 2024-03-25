@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS Ordertable (
     personId VARCHAR(100) NOT NULL,
     managerId VARCHAR(100) NOT NULL,
     state varchar(10) NOT null,
-    addr varchar(100) not null
+    addr varchar(100) null
     
 ) DEFAULT CHARSET=utf8;
 
@@ -173,6 +173,7 @@ insert into Ordertable value("1","prodcut01","강아지 배변패드","1","15000
 alter table ordertable add column managerId  VARCHAR(100) NOT NULL;
 alter table ordertable add column   state varchar(10) NOT NULL;
 alter table ordertable modify column productId varchar(100); 
+alter table ordertable modify column addr varchar(100); 
 drop table Ordertable;
 
 create table if not exists HospitalMember(
@@ -328,7 +329,7 @@ create table if not exists Product(
     ProductImage varchar(100) null,
     
     PersonId varchar(10),
-    AnimalCategory varchar(10) not null -- 강아지, 고양이, 파충류 등
+    AnimalCategory varchar(10) not null, -- 강아지, 고양이, 파충류 등
     ReviewScore float,
     ReviewCount int
     
@@ -338,7 +339,8 @@ insert into Product values("product02", "강아지 배변패드" , "15000",  "�
 select * from Product;
 delete from Product where personId="cat";
 drop table product;
-alter table Product add  column ReviewScore float;
+alter table Product add column ReviewScore float;
+alter table Product add column ReviewCount int;
 
 create table hospital(
    name varchar(30) not null,
