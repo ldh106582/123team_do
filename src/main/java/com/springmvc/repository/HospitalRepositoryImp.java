@@ -293,22 +293,23 @@ public class HospitalRepositoryImp implements HospitalRepository{
 		}
 		return adress;
 	}
-
+	// 도현_카카오 api를 이용하여 병원의 위치를 나타냄
 	@Override
-	public void publicAPI() {
-	    System.out.println("ddds");
-	    String key = "6SSihIOiLvtoN4Ov+cME/ZolzUd08COnp0X3j9Zu+Sor8dNfCM7u5Iyy/naB4Q5VsT27bE490/DOXsE/GUdjmQ==";
+	public void publicAPI() 
+	{
+	    String key = "";
 	    String result = "https://api.odcloud.kr/api/15044802/v1/uddi:46506e2c-4557-4e99-a4fd-939b1004d34c?page=10&perPage=10&returnType=json&serviceKey=";
-	    System.out.println("ddds : " + result);
 
-	    try {
+	    try 
+	    {
 		    String encodedKey = URLEncoder.encode(key, "UTF-8");
 	        URL url = new URL(result + encodedKey);
-	        
 	        System.out.println("url : " + url);
+	        
 	        HttpURLConnection con = (HttpURLConnection) url.openConnection();
 	        System.out.println("con : " + con);
 	        con.setRequestMethod("GET");
+	        // 도현_responseCode 200이 나와야 정상임
 	        int responseCode = con.getResponseCode();
 	        System.out.println("responseCode : " + responseCode);
 	        
@@ -321,21 +322,24 @@ public class HospitalRepositoryImp implements HospitalRepository{
 	        {
 	        	br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));	        	
 	        }
+	        // 도현_StringBuilder 객체를 사용할 시 코드를 조합할 때 효율적임. 
 	        StringBuilder response = new StringBuilder();
 	        String line;
+	        // 도현_line을 readLine 함수로 null이 아닐때 까지 반복함. line 변수 값을 (StringBuilder)response에 담아줌
 	        while ((line = br.readLine()) != null) {
 	            response.append(line);
 	        }
 	        br.close();
-	        System.out.println("result : " + result);
+	        // 도현_코드가 제대로 작동하는지 확인함.
 	        System.out.println("==================================");
+	        // 도현_Object으로 키 값을 다루기 위해 객체를 생성함
 	        JSONObject jsonObject = new JSONObject(response.toString());
 	        System.out.println("jsonObject : " + jsonObject);
-	        
+	        // 도현_json에 있는 data 정보를 추출함.
 	        JSONArray data = jsonObject.getJSONArray("data");
-	        System.out.println("body : " + data);
+	        System.out.println("data : " + data);
 	        
-	     
+	        // data 변수길이를 지속적으로 반복하여 소재지 값을 전부 name에 담아줌
 	        for(int i = 0; i < data.length(); i++) {
 	            JSONObject item = data.getJSONObject(i);
 	            System.out.println("item : " + item);
@@ -343,10 +347,10 @@ public class HospitalRepositoryImp implements HospitalRepository{
 	            System.out.println("========================");
 	            System.out.println("name: " + name);
 	        }
-	    }catch (Exception e) {
-	    	
 	    }
-	       
+	    catch (Exception e) 
+	    {
+	    }
 	}
 
 	@Override

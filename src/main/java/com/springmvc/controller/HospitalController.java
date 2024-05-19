@@ -36,36 +36,40 @@ public class HospitalController {
 	@Autowired
 	BookingService bookingService;
 	
+	// 도현_병원 페이징을 진행하는 함수 기본값을 1로 설정함.
 	@GetMapping
 	public String getAllhospitals(Model model, @RequestParam(defaultValue = "1") int page)
 	{
-
+			// 도현_병원에 있는 전체 데이터를 가져옴.
 		 	List<Hospital> listOfCount = hospitalService.getCount();
 
 		    int totalCount = listOfCount.size(); // 전체 항목 수
-		    int pageSize = 3; // 한 페이지에 표시할 항목 수
+		    int pageSize = 3; // 한 페이지에 표시할 항목의 수
 		    int pageCount = (totalCount + pageSize - 1) / pageSize; // 페이지 수 계산
-
 		    
-		    // 페이지 번호 범위 생성
+		    // 도현_페이지 번호 범위 생성 객체의 수량을 int로 변환함.
 		    List<Integer> pageNumbers = new ArrayList<Integer>();
+		    // 도현_전체 갯수를 확인함.
 		    for (int i = 1; i <= pageCount; i++) 
 		    {	
 		        pageNumbers.add(i);
 		    }
 		    model.addAttribute("pageNumbers", pageNumbers);
 
+		 // 도현_page가 1일 경우 1을 나타냄
 		if(page == 1) 
 		{
 			List<Hospital> hospitals = hospitalService.getAllhospitals(page);
 			model.addAttribute("hospitals", hospitals);
 		}
+		// 도현_1 이 아니 경우 전체 개수를 나타냄
 		else
 		{
 			List<Hospital> hospitals = hospitalService.getAllhospitals(page);
 			model.addAttribute("hospitals", hospitals);
 		}
 		
+		// 도현_한의가 별의 수를 확인하기 위해 작성함
 		model.addAttribute("fiveScore", reviewService.get5scoreReview());
 		model.addAttribute("fourScore", reviewService.get4scoreReview());
 		model.addAttribute("threeScore", reviewService.get3scoreReview());
